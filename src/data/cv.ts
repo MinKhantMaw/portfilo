@@ -99,7 +99,11 @@ export const cvData = {
         "Integrated real-time notification broadcasting.",
         "Configured deployment using Docker and AWS; built administrator management functionality."
       ],
-      technologies: ["Laravel 11", "PHP", "MySQL", "Redis", "Queue", "Docker", "AWS", "Bootstrap", "JavaScript", "REST API"]
+      technologies: ["Laravel 11", "PHP", "MySQL", "Redis", "Queue", "Docker", "AWS", "Bootstrap", "JavaScript", "REST API"],
+      screenshots: [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2006&auto=format&fit=crop"
+      ]
     }
   ],
   achievements: [
