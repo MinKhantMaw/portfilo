@@ -1,20 +1,81 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Portfolio Website
 
-# Run and deploy your AI Studio app
+A modern portfolio website built with React, TypeScript, Vite, and Tailwind CSS. This project is structured as a fast, responsive single-page application ideal for showcasing projects, skills, experience, and contact information.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/e9a1213c-d1f8-4d73-ab30-1a6e0f084395
+- React 19 + TypeScript frontend
+- Vite-powered development and production build
+- Tailwind CSS 4 for utility-first styling
+- Responsive layout and accessible components
+- Simple, maintainable component structure
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide icons
+- Express (dependency included for optional backend or local API use)
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Prerequisites
+
+- Node.js 20+ (or compatible version)
+- npm
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+Open the address shown in the terminal, typically `http://localhost:3000`.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+## Scripts
+
+- `npm run dev` — start the development server
+- `npm run build` — build the app for production
+- `npm run preview` — preview the production build locally
+- `npm run clean` — remove generated build files
+- `npm run lint` — type-check the project with TypeScript
+
+## Project Structure
+
+- `src/` — application source code
+  - `App.tsx` — root application component
+  - `main.tsx` — client entry point
+  - `index.css` — global styles
+  - `components/` — UI and page sections
+  - `data/` — structured data for content
+  - `hooks/` — reusable custom hooks
+
+## Notes
+
+- Tailwind is configured through `tailwind.config.ts`
+- Vite configuration lives in `vite.config.ts`
+- Update content and styling in `src/components` and `src/data`
+
+## License
+
+This repository is provided as-is. Feel free to adapt it for your portfolio or personal projects.
