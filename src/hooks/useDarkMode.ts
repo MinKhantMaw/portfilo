@@ -1,30 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
+
+function getInitialTheme() {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') return true;
+  if (savedTheme === 'light') return false;
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
 
 export function useDarkMode() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    // Check local storage or system preference on initial load
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        return savedTheme === 'dark';
-      }
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return false; // Default to light mode for SSR
-  });
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(getInitialTheme);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = window.document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+    root.classList.toggle('dark', isDarkMode);
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
-  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
+  const toggleDarkMode = () => setIsDarkMode((prevMode) => !prevMode);
 
   return { isDarkMode, toggleDarkMode };
 }
