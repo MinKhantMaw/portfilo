@@ -1,27 +1,27 @@
-import { motion } from 'motion/react';
-import { Github, Linkedin, Globe } from 'lucide-react';
+import { motion } from "motion/react";
+import { Github, Linkedin } from "lucide-react";
 
 export default function FloatingSocials() {
   const socials = [
     {
-      name: 'GitHub',
+      name: "GitHub",
       icon: <Github className="w-5 h-5" />,
-      url: 'https://github.com/MinKhantMaw/',
+      url: "https://github.com/MinKhantMaw/",
     },
     {
-      name: 'LinkedIn',
+      name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
-      url: 'https://www.linkedin.com/in/minkhantmaw/',
+      url: "https://www.linkedin.com/in/minkhantmaw/",
     },
-    {
-      name: 'Blog',
-      icon: <Globe className="w-5 h-5" />,
-      url: '#',
-    },
+    // {
+    //   name: 'Blog',
+    //   icon: <Globe className="w-5 h-5" />,
+    //   url: '#',
+    // },
   ];
 
   return (
-    <motion.div 
+    <motion.div
       className="hidden xl:flex fixed left-8 bottom-0 flex-col items-center gap-6 z-50"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
