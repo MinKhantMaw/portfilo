@@ -104,6 +104,22 @@ export const cvData = {
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=2006&auto=format&fit=crop"
       ]
+    },
+    {
+      id:2, 
+      name: "Frontend and Backend Starter Templates",
+      link: "https://github.com/MinKhantMaw/backend-starterkit",
+      description: "A collection of starter templates for rapid web application development with pre-configured frontend and backend setups.",
+      features: "Pre-configured Laravel backend template, Vue.js frontend template, Authentication scaffolding, API structure, Database migrations, Basic UI components.",
+      responsibilities: [
+        "Created reusable backend and frontend starter templates for rapid application development.",
+        "Included authentication scaffolding and basic UI components for quick project setup."
+      ],
+      technologies: ["Laravel", "Vue.js", "PHP", "JavaScript", "MySQL"],
+      screenshots: [
+       "../../public/images/image.png",
+       "../../public/images/image.png"
+      ]
     }
   ],
   achievements: [
