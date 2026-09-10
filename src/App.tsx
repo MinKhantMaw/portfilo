@@ -55,7 +55,7 @@ export default function App() {
             </a> */}
           </div>
           <p className="text-sm font-medium text-slate-500 dark:text-slate-500">
-            © {new Date().getFullYear()} Myo Khant Mon. All rights reserved.
+            © {new Date().getFullYear()} Min Khant Maw. All rights reserved.
           </p>
         </div>
       </footer>
