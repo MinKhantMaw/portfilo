@@ -26,7 +26,7 @@ export const cvData = {
       id: 1,
       title: "Full Stack Developer",
       company: "Onenex Co., Ltd",
-      duration: "Aug 2023 – Present",
+      duration: "Aug 2023 – JPresent",
       projects: [
         {
           name: "Estate Management Project — Finance & Estate Management Web Application",
@@ -120,6 +120,17 @@ export const cvData = {
        "../../public/images/image.png",
        "../../public/images/image.png"
       ]
+    },
+    {
+      id: 3,
+      name: "E-Certificate Generator System",
+      link: "https://github.com/MinKhantMaw/certificate",
+      demoLink: "https://certificate-one-mu.vercel.app/",
+      description: "An open-source e-certificate platform for managing certificate templates, importing records from Excel, and generating electronic certificates. The admin dashboard summarizes document validity, revoked documents, and recent import activity.",
+      features: "Admin Dashboard, Certificate Template Management, Document Management, Excel Data Import, Certificate Generation, Valid and Revoked Document Tracking, Import History, Recent Documents and Imports",
+      responsibilities: [],
+      technologies: [],
+      screenshots: []
     }
   ],
   achievements: [

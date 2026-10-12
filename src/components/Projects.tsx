@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { cvData } from '../data/cv';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, FolderGit2, Eye, X, CheckCircle2 } from 'lucide-react';
+import { Github, FolderGit2, Eye, X, CheckCircle2, ExternalLink } from 'lucide-react';
 
-type Project = typeof cvData.personalProjects[0];
+type Project = (typeof cvData.personalProjects)[number] & { demoLink?: string };
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -35,7 +35,7 @@ export default function Projects() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-        {cvData.personalProjects.map((project, idx) => (
+        {cvData.personalProjects.map((project: Project, idx) => (
           <motion.div
             key={project.id}
             className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/60 rounded-[2rem] p-8 flex flex-col hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 overflow-hidden"
@@ -59,29 +59,46 @@ export default function Projects() {
               {project.description}
             </p>
             
-            <div className="relative z-10 flex gap-2 flex-wrap mb-8">
-              {project.technologies.slice(0, 4).map((tech, tIdx) => (
-                <span key={tIdx} className="px-3 py-1.5 bg-indigo-50/80 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 rounded-lg text-xs font-bold border border-indigo-200/50 dark:border-indigo-500/20 shadow-sm transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20">
-                  {tech}
-                </span>
-              ))}
-              {project.technologies.length > 4 && (
-                <span className="px-3 py-1.5 bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-bold border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
-                  +{project.technologies.length - 4}
-                </span>
-              )}
-            </div>
+            {project.technologies.length > 0 && (
+              <div className="relative z-10 flex gap-2 flex-wrap mb-8">
+                {project.technologies.slice(0, 4).map((tech, tIdx) => (
+                  <span key={tIdx} className="px-3 py-1.5 bg-indigo-50/80 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 rounded-lg text-xs font-bold border border-indigo-200/50 dark:border-indigo-500/20 shadow-sm transition-colors group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20">
+                    {tech}
+                  </span>
+                ))}
+                {project.technologies.length > 4 && (
+                  <span className="px-3 py-1.5 bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 rounded-lg text-xs font-bold border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
+                    +{project.technologies.length - 4}
+                  </span>
+                )}
+              </div>
+            )}
 
-            <div className="relative z-10 flex gap-4 pt-6 border-t border-slate-100 dark:border-slate-800/60 items-center justify-between mt-auto">
-               <a 
-                 href={project.link} 
-                 target="_blank" 
-                 rel="noopener noreferrer" 
-                 className="inline-flex items-center text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
-               >
-                  <Github className="w-5 h-5 mr-2" />
-                  View Source
-               </a>
+            <div className="relative z-10 flex flex-wrap gap-x-4 gap-y-3 pt-6 border-t border-slate-100 dark:border-slate-800/60 items-center justify-between mt-auto">
+               <div className="flex flex-wrap items-center gap-4">
+                 {project.demoLink && (
+                   <a
+                     href={project.demoLink}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="inline-flex items-center text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+                   >
+                     <ExternalLink className="w-5 h-5 mr-2" />
+                     Live Demo
+                   </a>
+                 )}
+                 {project.link && (
+                   <a 
+                     href={project.link} 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     className="inline-flex items-center text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors"
+                   >
+                      <Github className="w-5 h-5 mr-2" />
+                      View Source
+                   </a>
+                 )}
+               </div>
 
                <button 
                  onClick={() => setActiveProject(project)}
@@ -140,16 +157,29 @@ export default function Projects() {
                     <h3 className="text-3xl font-display font-bold text-slate-900 dark:text-white mb-1">
                       {activeProject.name}
                     </h3>
-                    <div className="flex items-center gap-4">
-                      <a 
-                        href={activeProject.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="inline-flex items-center text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300"
-                      >
-                        <Github className="w-4 h-4 mr-1.5" />
-                        View Source
-                      </a>
+                    <div className="flex flex-wrap items-center gap-4">
+                      {activeProject.demoLink && (
+                        <a
+                          href={activeProject.demoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-1.5" />
+                          Live Demo
+                        </a>
+                      )}
+                      {activeProject.link && (
+                        <a 
+                          href={activeProject.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300"
+                        >
+                          <Github className="w-4 h-4 mr-1.5" />
+                          View Source
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -177,7 +207,7 @@ export default function Projects() {
                       </section>
                     )}
 
-                    {activeProject.responsibilities && (
+                    {activeProject.responsibilities && activeProject.responsibilities.length > 0 && (
                       <section>
                         <h4 className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-4">My Role</h4>
                         <ul className="space-y-3">
@@ -210,16 +240,18 @@ export default function Projects() {
                   </div>
 
                   <div className="space-y-8">
-                    <section className="bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-6 border border-slate-100 dark:border-slate-800/60">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Tech Stack</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {activeProject.technologies.map((tech, tIdx) => (
-                          <span key={tIdx} className="px-3 py-1.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-bold border border-slate-200 dark:border-slate-700 shadow-sm">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </section>
+                    {activeProject.technologies.length > 0 && (
+                      <section className="bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-6 border border-slate-100 dark:border-slate-800/60">
+                        <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Tech Stack</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {activeProject.technologies.map((tech, tIdx) => (
+                            <span key={tIdx} className="px-3 py-1.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-bold border border-slate-200 dark:border-slate-700 shadow-sm">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </section>
+                    )}
                   </div>
                 </div>
               </div>
